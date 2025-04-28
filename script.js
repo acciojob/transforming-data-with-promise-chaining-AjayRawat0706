@@ -1,70 +1,61 @@
 //your JS code here. If required.
+document.getElementById("btn").addEventListener("click", function () {
+  const inputValue = document.getElementById("ip").value.trim();
+  const outputDiv = document.getElementById("output");
+  outputDiv.innerHTML = ""; // Clear previous results
 
-let btn=document.getElementById("btn")
+  const number = parseFloat(inputValue);
 
+  if (isNaN(number)) {
+    outputDiv.innerText = "Please enter a valid number.";
+    return;
+  }
 
-function myPromise1(num){
-	return new Promise((resolve,reject)=>{
-		setTimeout(()=>{
-			resolve(num);
-		},2000)
-	})
-}
-
-function myPromise2(data){
-	return new Promise((resolve,reject)=>{
-		setTimeout(()=>{
-			resolve(data*2);
-		},2000)
-	})
-}
-
-function myPromise3(data){
-	return new Promise((resolve,reject)=>{
-		setTimeout(()=>{
-			resolve(data-3);
-		},1000)
-	})
-}
-
-function myPromise4(data){
-	return new Promise((resolve,reject)=>{
-		setTimeout(()=>{
-			resolve(data/2);
-		},1000)
-	})
-}
-
-function myPromise5(data){
-	return new Promise((resolve,reject)=>{
-		setTimeout(()=>{
-			resolve(data+10);
-		},1000)
-	})
-}
-
-
-let opt=document.getElementById("output")
-
-btn.addEventListener('click', function() {
-  let num = Number(document.getElementById("ip").value); // Get fresh input value on click
-
-  myPromise1(num)
-  .then((res)=>{
-	  opt.textContent=`Result: ${res}`;
-	  return myPromise2(res);
-  }).then((res)=>{
-	  opt.textContent=`Result: ${res}`;
-	  return myPromise3(res);
-  }).then((res)=>{
-	  opt.textContent=`Result: ${res}`;
-	  return myPromise4(res);
-  }).then((res)=>{
-	  opt.textContent=`Result: ${res}`;
-	  return myPromise5(res);
-  }).then((res)=>{
-	  opt.textContent=`Result: ${res}`;
+  // First promise: resolve input after 2 seconds
+  new Promise((resolve) => {
+    setTimeout(() => {
+      outputDiv.innerText = `Result: ${number}`;
+      resolve(number);
+    }, 2000);
   })
-   
+  // Multiply by 2
+  .then((result) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const newResult = result * 2;
+        outputDiv.innerText = `Result: ${newResult}`;
+        resolve(newResult);
+      }, 1000); // 2nd promise (after 3s total)
+    });
+  })
+  // Subtract 3
+  .then((result) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const newResult = result - 3;
+        outputDiv.innerText = `Result: ${newResult}`;
+        resolve(newResult);
+      }, 1000); // 3rd promise (after 4s total)
+    });
+  })
+  // Divide by 2
+  .then((result) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const newResult = result / 2;
+        outputDiv.innerText = `Result: ${newResult}`;
+        resolve(newResult);
+      }, 1000); // 4th promise (after 5s total)
+    });
+  })
+  // Add 10
+  .then((result) => {
+    return new Promise((resolve) => {
+      setTimeout(() => {
+        const finalResult = result + 10;
+        outputDiv.innerText = `Final Result: ${finalResult}`;
+        resolve(finalResult);
+      }, 1000); // 5th promise (after 6s total)
+    });
+  });
 });
-
