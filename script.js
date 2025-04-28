@@ -51,19 +51,19 @@ btn.addEventListener('click', function() {
 
   myPromise1(num)
   .then((res)=>{
-	  opt.textContent=res;
+	  opt.textContent=`Result: ${res}`;
 	  return myPromise2(res);
   }).then((res)=>{
-	  opt.textContent=res;
+	  opt.textContent=`Result: ${res}`;
 	  return myPromise3(res);
   }).then((res)=>{
-	  opt.textContent=res;
+	  opt.textContent=`Result: ${res}`;
 	  return myPromise4(res);
   }).then((res)=>{
-	  opt.textContent=res;
+	  opt.textContent=`Result: ${res}`;
 	  return myPromise5(res);
   }).then((res)=>{
-	  opt.textContent=res;
+	  opt.textContent=`Result: ${res}`;
   })
    
 });
