@@ -1,11 +1,9 @@
 //your JS code here. If required.
 
-
-let num=document.getElementById("ip").value;
 let btn=document.getElementById("btn")
 
 
-function myPromise1(){
+function myPromise1(num){
 	return new Promise((resolve,reject)=>{
 		setTimeout(()=>{
 			resolve(num);
